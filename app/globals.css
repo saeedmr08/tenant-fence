@@ -1,0 +1,206 @@
+:root {
+  --steel: #1c2430;
+  --steel-mid: #2a3544;
+  --mesh: #3d4f63;
+  --panel: #243040;
+  --panel-lift: #2e3d50;
+  --lime: #b8f24a;
+  --lime-dim: #8cbc2e;
+  --warn: #ff8a4c;
+  --ok: #5ee0a8;
+  --fail: #ff6b7a;
+  --fog: #a8b8c8;
+  --fog-bright: #e8eef4;
+  --grid: rgba(184, 242, 74, 0.07);
+  --font-display: "Space Grotesk", "Avenir Next", sans-serif;
+  --font-ui: "DM Sans", "Avenir Next", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  color: var(--fog-bright);
+  font-family: var(--font-ui);
+  background-color: var(--steel);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    radial-gradient(ellipse 70% 50% at 15% 0%, #2f4a38 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 90% 10%, #1a3048 0%, transparent 50%),
+    linear-gradient(165deg, #16202c 0%, #1c2430 45%, #141c26 100%);
+  background-size:
+    28px 28px,
+    28px 28px,
+    auto,
+    auto,
+    auto;
+  background-attachment: fixed;
+  line-height: 1.5;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: var(--lime);
+}
+
+.shell {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2.75rem 1.25rem 4rem;
+  display: grid;
+  gap: 2rem;
+}
+
+.hero {
+  position: relative;
+  padding: 2.5rem 1.75rem 2.25rem;
+  border: 1px solid var(--mesh);
+  background:
+    linear-gradient(135deg, rgba(184, 242, 74, 0.08), transparent 40%),
+    linear-gradient(180deg, var(--panel-lift), var(--panel));
+  overflow: hidden;
+  animation: rise 0.7s ease-out both;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      -12deg,
+      transparent,
+      transparent 10px,
+      rgba(184, 242, 74, 0.035) 10px,
+      rgba(184, 242, 74, 0.035) 11px
+    );
+  pointer-events: none;
+}
+
+.brand {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 0.85rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 8vw, 4.4rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: var(--lime);
+  text-shadow: 0 0 40px rgba(184, 242, 74, 0.25);
+  animation: flicker 4s ease-in-out infinite;
+}
+
+.tagline {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 3vw, 1.55rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--fog-bright);
+}
+
+.lede {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  max-width: 36rem;
+  color: var(--fog);
+  font-size: 1.02rem;
+}
+
+.lede code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--lime);
+  background: rgba(0, 0, 0, 0.25);
+  padding: 0.1em 0.35em;
+}
+
+.cta-row {
+  position: relative;
+  z-index: 1;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.15rem;
+  background: var(--lime);
+  color: var(--steel);
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 4px 4px 0 var(--steel-mid);
+}
+
+.cta:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--steel-mid);
+}
+
+.byline {
+  font-size: 0.85rem;
+  color: var(--fog);
+  font-family: var(--font-mono);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  48% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.15);
+  }
+  52% {
+    filter: brightness(0.92);
+  }
+  54% {
+    filter: brightness(1.05);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 1.75rem 1.15rem;
+  }
+}
